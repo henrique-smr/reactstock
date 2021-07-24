@@ -17,19 +17,24 @@ export default function RESOLVE():IEvent<IRootState> {
 		if(!node && newStack.length === 0)
 		{
 			if(state._errors_.length !> 0)
+			{
 				dispatch(RESOLVE_SUCCESS())
+			}
 			else
+			{
 				dispatch(RESOLVE_FAILED())
+			}
 			return
 		}
 
 		try {
-			await resolveDomain(node.resolve,{state:state._domains_,services,dispatch:domainsDispatch});
+			if(node) await resolveDomain(node.resolve,{state:state._domains_,services,dispatch:domainsDispatch});
+			else dispatch(RESOLVE_FAILED());
 		}
 		catch(error)
 		{
 			console.error(error)
-			if(!node.isCatchable)
+			if(!node?.isCatchable)
 				dispatch(UNSHIFT_ERROR(error))
 		}
 

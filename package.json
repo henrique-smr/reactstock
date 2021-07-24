@@ -1,7 +1,7 @@
 {
-	"name": "reactstore",
+	"name": "reactstock",
 	"version": "1.0.0",
-	"description": "State manager inspired to overcome Redux",
+	"description": "Pure React state management library",
 	"main": "dist/index.js",
 	"scripts": {
 		"build": "rollup -c",
